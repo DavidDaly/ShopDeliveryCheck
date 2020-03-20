@@ -5,6 +5,15 @@
 	define("PREFERRED", "3");
 	define("NOT_NEEDED", "4");
 	
+	$siteURL = "https://shopdeliverycheck.co.uk/";
+	
+	$socialLinks = 	'<div class="product-social-links" style="line-height: 13px">' .
+					'	<div class="fb-share-button" data-href="' . $siteURL . '" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fshopdeliverycheck.co.uk%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>' .
+					'		<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>' .
+					'		<script type="IN/Share" data-url="' . $siteURL . '"></script>' .
+					'		<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Please take a moment to submit information about the availability of home shopping deliveries in your area" data-url="' . $siteURL . '" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>' .						
+					'	</div>';
+	
 	require 'db.php';
 	
 	$id = NULL;
@@ -226,7 +235,11 @@
 	</head>
 	
 	<body id="bigwrapper">
-
+	
+	<!-- Facebook JavaScript SDK -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+	
 	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group" ">
 		<a href="about" class="navbar-brand">Shopping Delivery Check</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">

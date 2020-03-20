@@ -1,6 +1,6 @@
 <?php 
 	
-	$activePage = 'Summary for Your Area';
+	$activePage = 'Results';
 
 	require 'header.php';
 
@@ -148,6 +148,7 @@
 		global $nationalStats;
 		global $showLocalStats;
 		global $advice;
+		global $socialLinks;
 
 	?>
 	
@@ -161,6 +162,7 @@
 								<h3>Summary</h3>
 								<p><?=$advice?></p>
 								<p>Please return to this site to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we are reporting information that is current.</p>
+								<p><?=$socialLinks?></p>
 							</div>
 						</div>	
 				</div>
