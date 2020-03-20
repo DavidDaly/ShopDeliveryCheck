@@ -3,5 +3,6 @@
 
 RewriteEngine On # Turn on the rewriting engine
 RewriteRule		^$						about.php [NC,L]
+RewriteRule		^about$					about.php 	[NC,L]
 RewriteRule		^your-information$		enterDetails.php 	[NC,L]
 RewriteRule		^area-summary$			areaSummary.php 	[NC,L]

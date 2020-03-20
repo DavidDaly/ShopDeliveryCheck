@@ -1,5 +1,7 @@
 <?php 
 	
+	require 'db.php';
+	
 	$id = NULL;
 	
 	// Are they a returning visitor
@@ -43,11 +45,10 @@
 		$needGroup = 4;
 	}
 	
-	
 	// If person has clicked save (i.e. we have post data), save it to the database and ten navigate to Summary for Area
 	if ( isset($_POST['POSTCODE']) )
 	{	
-		$dbconn = new mysqli('localhost', 'root', '', 'shopdelcheck');
+		$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
 		// Check connection
 		if (!$dbconn->connect_error)
 		{
@@ -65,7 +66,7 @@
 				// If it was an insert, save the insert ID in a cookie
 				if ( $id == NULL )
 				{
-					setcookie('shopdeliverycheck', $dbconn->insert_id,  time() + (1 * 365 * 24 * 60 * 60) );
+					setcookie('shopdeliverycheck', $dbconn->insert_id, time() + (1 * 365 * 24 * 60 * 60));
 				}
 				if ( strlen( trim($postcode)) >= 2 )
 				{
@@ -77,7 +78,7 @@
 				echo $dbconn->error;
 			}
 		
-		$dbconn->close();
+			$dbconn->close();
 		
 		}
 		else
@@ -91,7 +92,7 @@
 		// See if they are returning
 		if ( $id != NULL )
 		{
-			$dbconn = new mysqli('localhost', 'root', '', 'shopdelcheck');
+			$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
 			// Check connection
 			if (!$dbconn->connect_error)
 			{

@@ -43,7 +43,7 @@
 					<h1 class="jumbotron-heading">Keep food delivery for people who most need it</h1>
 					<p class="lead">With the huge impact of COVID-19 there are many people who cannot leave their home to do shopping. 
 									Whether this is because they are following UK government advice to help stop the spread of the virus, or for another reason, 
-									it is vital at this time that we use the delivery slots available to support them. This meas that anyone who can shop in-store should do so.
+									it is vital at this time that we use the delivery slots available to support them. This means that anyone who can shop in-store should do so.
 									By sharing informaion sbout yourself here, you will help us all to <b>do the right thing</b>.</p>
 					<p>
 						<a href='your-information' class="btn btn-primary">Enter your details</a>

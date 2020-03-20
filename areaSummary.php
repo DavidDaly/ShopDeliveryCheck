@@ -17,7 +17,7 @@
 	else
 	{
 
-		$dbconn = new mysqli('localhost', 'root', '', 'shopdelcheck');
+		$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
 		// Check connection
 		if (!$dbconn->connect_error)
 		{
@@ -146,8 +146,9 @@
 				<div class="bg-light rounded-top mt-4 p-2 p-sm-4 border-primary border ml-sm-2 ml-xs-2 mb-0 mr-sm-2 mr-xs-2">
 						<div class="row">
 							<div class="col-lg-12">
+								<h3>Summary</h3>
 								<p><?=$advice?></p>
-								<p>Please return to this site to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we ae reporting informaion that is current.</p>
+								<p>Please return to this site to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we are reporting information that is current.</p>
 							</div>
 						</div>	
 				</div>
@@ -196,7 +197,15 @@
 				legend: 
 					{
 						display: false
-					}
+					},
+				scales: {
+					xAxes: [{
+						ticks:
+						{
+							beginAtZero: true
+						}
+					}]
+				}
 			}
 	});
 

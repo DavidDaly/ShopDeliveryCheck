@@ -1,7 +1,5 @@
 <?php 
 	
-	/* Copyright 2018 Atos SE and Worldline
-	 * Licensed under MIT (https://github.com/atosorigin/DevOpsMaturityAssessment/blob/master/LICENSE) */
 	
 	$isForm = TRUE;
 	$activePage = 'Your Information';
@@ -53,7 +51,7 @@
 				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
 						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
 							By using this site you agree that the data you provide can be used in order to generate summary statistics. The data may also be shared with 3rd parties (such as supermarkets, the UK Government, or other relevant organisations) to assist with their planning.<br /><br />
-							Please complete the questions below and then click on Save.	
+							Please complete the questions below and then click on Save.	In addition you agree to the use of cookies which ae used only to enable you to return and update the information you have provided.
 						</div>
 				</div>
 		
@@ -66,7 +64,7 @@
 				</div>
 		
 				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
-					<h6 class="card-header">Are supermarket home delivery slots currently available in your area?</h6>
+					<h6 class="card-header">Are supermarket home delivery slots available over the next 7 days in your area?</h6>
 						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="AVAIL-YES" value="AVAIL-YES" name="AVAIL" <?=$availYesChecked?>>
@@ -121,8 +119,15 @@
 		</div>
 
 	</div>
+	</div>
 	
 	</form>	
+	
+<?php
+	
+	require 'footer.php';
+	
+?>	
 
 	
 	
