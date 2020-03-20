@@ -1,5 +1,10 @@
 <?php 
 	
+	define("TOTALLY_RELIANT", "1");
+	define("HIGHLY_RELIANT", "2");
+	define("PREFERRED", "3");
+	define("NOT_NEEDED", "4");
+	
 	require 'db.php';
 	
 	$id = NULL;
@@ -70,7 +75,7 @@
 				}
 				if ( strlen( trim($postcode)) >= 2 )
 				{
-					header('Location: area-summary');
+					header('Location: results');
 				}
 			}
 			else
@@ -120,9 +125,7 @@
 	// Create an array to represent the navbar buttons
 	$navBar = array (
 		'Your Information' => array ('Url' => 'your-information', 'Type' => 'Standard'),
-		'Summary for Your Area' => array ('Url' => 'area-summary', 'Type' => 'Standard'),
-		//'National Summary' => array ('Url' => 'national-summary', 'Type' => 'Standard'),
-		
+		'Results' => array ('Url' => 'results', 'Type' => 'Standard'),	
 		'About' => array ('Url' => 'about', 'Type' => 'Standard') );
 	
 	function RenderNavBarButtons($navBar)
