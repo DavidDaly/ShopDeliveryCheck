@@ -56,14 +56,6 @@
 				</div>
 		
 				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
-					<h6 class="card-header">Please enter your postcode (first half only):</h6>
-						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
-							<?=$postcodeError?>
-							<input type="text" class="form-control mt-2 mb-2" id="POSTCODE" name="POSTCODE" placeholder="AA11" value="<?=$postcode?>" maxlength="4">
-						</div>
-				</div>
-		
-				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
 					<h6 class="card-header">Are supermarket home delivery slots available over the next 7 days in your area?</h6>
 						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
 							<div class="custom-control custom-radio my-2">
@@ -103,7 +95,13 @@
 						</div>
 				</div>
 		
-		
+				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
+					<h6 class="card-header">Please enter your postcode (first half only):</h6>
+						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
+							<?=$postcodeError?>
+							<input type="text" class="form-control mt-2 mb-2" id="POSTCODE" name="POSTCODE" placeholder="AA11" value="<?=$postcode?>" maxlength="4">
+						</div>
+				</div>
 		
 		
 		</div>		
