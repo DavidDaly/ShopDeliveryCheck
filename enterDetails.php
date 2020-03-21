@@ -1,5 +1,6 @@
 <?php 
-	
+	/* Copyright 2020 David Daly
+	 * Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE) */
 	
 	$isForm = TRUE;
 	$activePage = 'Your Information';

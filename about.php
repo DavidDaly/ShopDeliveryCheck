@@ -1,6 +1,6 @@
 <?php 
-	/* Copyright 2018 Atos SE and Worldline
-	 * Licensed under MIT (https://github.com/atosorigin/DevOpsMaturityAssessment/blob/master/LICENSE) */
+	/* Copyright 2020 David Daly
+	 * Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE) */
 	
 	$isForm = FALSE;
 	$activePage = 'About';

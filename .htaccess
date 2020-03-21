@@ -1,5 +1,5 @@
 # Copyright 2020 David Daly
-# Licensed under MIT (https://github.com/atosorigin/DevOpsMaturityAssessment/blob/master/LICENSE)
+# Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE)
 
 RewriteEngine On # Turn on the rewriting engine
 RewriteRule		^$						about.php 				[NC,L]

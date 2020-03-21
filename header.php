@@ -1,4 +1,6 @@
 <?php 
+	/* Copyright 2020 David Daly
+	 * Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE) */
 	
 	define("TOTALLY_RELIANT", "1");
 	define("HIGHLY_RELIANT", "2");
