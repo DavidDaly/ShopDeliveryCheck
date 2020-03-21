@@ -52,6 +52,9 @@
 					<p>
 						<?=$socialLinks?>
 					</p>
+					<p>
+						Want to contribute? Why not <a href="https://github.com/DavidDaly/ShopDeliveryCheck">fork us on GitHub</a>.
+					</p>
 				</div>
 			</section>
 		
