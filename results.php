@@ -27,74 +27,69 @@
 					"WHERE DeliveryAvailable='false' AND Postcode='$postcode' " .
 					"GROUP BY NeedGroup";
 			$result = $dbconn->query($sql);
-			if ( $result->num_rows > 0 )
+
+			while ( $row = $result->fetch_assoc() )
 			{
-				while ( $row = $result->fetch_assoc() )
-				{
-					$localStats[$row['NeedGroup']] = $row['COUNT(Postcode)'];
-					$localTotal += $row['COUNT(Postcode)'];			
-				}
-				
-				$showLocalStats = ( $localTotal >= 10 );		
-				
-				if ( !$showLocalStats )
-				{	
-					$advice = 	"So far we don't have enough information for your postcode area so we are only showing national summary data. ".
-								"Please encourage other people in your area to use this site so that we can provide better local advice.";
-				}
-				else
-				{	
-					switch ( $needGroup )
-					{
-						case 1:
-							if ( ($localStats[HIGHLY_RELIANT] + $localStats[PREFERRED] + $localStats[NOT_NEEDED]) > 0 )
-							{
-								$advice = "Other people in your area have indicated that they are less reliant on shopping deliveries than you are. " . 
-											"Sharing your information may help them re-consider whether they need to use a shopping delivery service.";;
-							}
-							else
-							{
-								$advice = "Other people in your area are also totally reliant on shopping delivery services. " . 
-											"Please reach out to neighbours, friends and family to see if they can shop on your behalf.";
-							}
-							break;
-						case 2:
-							if ( ($localStats[TOTALLY_RELIANT]) > 0 )
-							{
-								$advice = "Other people in your area have indicated that they are <b>more</b> reliant on deliveries than you are. " . 
-											"Please consider cancelling any delivery slots that you have booked and relying instead on neighbours, friends and family to shop on your behalf.";
-							}
-							elseif ( ($localStats[PREFERRED] + $localStats[NOT_NEEDED]) > 0 )
-							{
-								$advice = "Other people in your area have indicated that they are less reliant on shopping deliveries than you are. " . 
-											"Sharing your information may help them re-consider whether they need to use a shopping delivery service.";
-							}
-							else
-							{
-								$advice = "Other people in your area are also highly reliant on shopping delivery services. " . 
-											"Please continue to reach out to neighbours, friends and family to see if they can shop on your behalf.";
-							}
-							break;
-						case 3:
-						case 4:
-							if ( ($localStats[TOTALLY_RELIANT] + $localStats[HIGHLY_RELIANT]) > 0 )
-							{
-								$advice = "Other people in your area have indicated that they are <b>more</b> reliant on deliveries than you are. " . 
-											"Please consider cancelling any delivery slots that you have and shopping in-store instead.";
-							}
-							else
-							{
-								$advice = "Currently in your area no one else has indicated that they are relying on shopping delivery services and are unable to access them. " . 
-											"However, please keep checking back regularly to see if this situation changes.";
-							}
-							break;				
-					} // Switch
-				}
+				$localStats[$row['NeedGroup']] = $row['COUNT(Postcode)'];
+				$localTotal += $row['COUNT(Postcode)'];			
+			}
+			
+			$showLocalStats = ( $localTotal >= 10 );		
+			
+			if ( !$showLocalStats )
+			{	
+				$advice = 	"So far we don't have enough information for your postcode area so we are only showing national summary data. ".
+							"Please encourage other people in your area to use this site so that we can provide better local advice.";
 			}
 			else
-			{
-				echo $dbconn->error;
+			{	
+				switch ( $needGroup )
+				{
+					case 1:
+						if ( ($localStats[HIGHLY_RELIANT] + $localStats[PREFERRED] + $localStats[NOT_NEEDED]) > 0 )
+						{
+							$advice = "Other people in your area have indicated that they are less reliant on shopping deliveries than you are. " . 
+										"Sharing your information may help them re-consider whether they need to use a shopping delivery service.";;
+						}
+						else
+						{
+							$advice = "Other people in your area are also totally reliant on shopping delivery services. " . 
+										"Please reach out to neighbours, friends and family to see if they can shop on your behalf.";
+						}
+						break;
+					case 2:
+						if ( ($localStats[TOTALLY_RELIANT]) > 0 )
+						{
+							$advice = "Other people in your area have indicated that they are <b>more</b> reliant on deliveries than you are. " . 
+										"Please consider cancelling any delivery slots that you have booked and relying instead on neighbours, friends and family to shop on your behalf.";
+						}
+						elseif ( ($localStats[PREFERRED] + $localStats[NOT_NEEDED]) > 0 )
+						{
+							$advice = "Other people in your area have indicated that they are less reliant on shopping deliveries than you are. " . 
+										"Sharing your information may help them re-consider whether they need to use a shopping delivery service.";
+						}
+						else
+						{
+							$advice = "Other people in your area are also highly reliant on shopping delivery services. " . 
+										"Please continue to reach out to neighbours, friends and family to see if they can shop on your behalf.";
+						}
+						break;
+					case 3:
+					case 4:
+						if ( ($localStats[TOTALLY_RELIANT] + $localStats[HIGHLY_RELIANT]) > 0 )
+						{
+							$advice = "Other people in your area have indicated that they are <b>more</b> reliant on deliveries than you are. " . 
+										"Please consider cancelling any delivery slots that you have and shopping in-store instead.";
+						}
+						else
+						{
+							$advice = "Currently in your area no one else has indicated that they are relying on shopping delivery services and are unable to access them. " . 
+										"However, please keep checking back regularly to see if this situation changes.";
+						}
+						break;				
+				} // Switch
 			}
+		
 			
 			$sql = 	"SELECT COUNT(Postcode), NeedGroup FROM information " .
 					"WHERE DeliveryAvailable='false' " .
@@ -107,10 +102,7 @@
 					$nationalStats[$row['NeedGroup']] = $row['COUNT(Postcode)'];	
 				}
 			}
-			else
-			{
-				echo $dbconn->error;
-			}
+			
 		}
 		$dbconn->close();
 	
