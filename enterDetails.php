@@ -85,7 +85,7 @@
 							</div>
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="NEED-GROUP-3" value="NEED-GROUP-3" name="NEED-GROUP" <?=$needGroupChecked[2]?>>
-								<label class="custom-control-label" for="NEED-GROUP-3"><b>Delivery preferred:</b> I prefer to have my shopping delivered for convenience but I am able to shop in store.
+								<label class="custom-control-label" for="NEED-GROUP-3"><b>Delivery preferred:</b> I prefer to have my shopping delivered but I am able to shop in store.
 								</label>
 							</div>
 							<div class="custom-control custom-radio my-2">
