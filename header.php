@@ -23,7 +23,10 @@
 	// Are they a returning visitor (specifying id in URL)
 	if ( isset( $_GET['id'] ) )
 	{
-		$id = $_GET['id'];
+		if ( is_numeric($_GET['id']) )
+		{
+			$id = $_GET['id'];
+		}
 	}
 	
 	// Start by checking that postcode has been entered
