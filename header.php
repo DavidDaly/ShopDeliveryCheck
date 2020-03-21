@@ -18,11 +18,10 @@
 	
 	$id = NULL;
 	
-	// Are they a returning visitor
-	if ( isset( $_COOKIE['shopdeliverycheck'] ) )
+	// Are they a returning visitor (specifying id in URL)
+	if ( isset( $_GET['id'] ) )
 	{
-		// See if the ID in the cookie is in the database and, if so, load the details
-		$id = $_COOKIE['shopdeliverycheck'];
+		$id = $_GET['id'];
 	}
 	
 	// Start by checking that postcode has been entered
@@ -59,7 +58,7 @@
 		$needGroup = 4;
 	}
 	
-	// If person has clicked save (i.e. we have post data), save it to the database and ten navigate to Summary for Area
+	// If person has clicked save (i.e. we have post data), save it to the database and then navigate to Summary for Area
 	if ( isset($_POST['POSTCODE']) )
 	{	
 		$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
@@ -77,14 +76,14 @@
 			
 			if ( $dbconn->query($sql) === TRUE )
 			{
-				// If it was an insert, save the insert ID in a cookie
+				// If it was an insert, save the insert ID
 				if ( $id == NULL )
 				{
-					setcookie('shopdeliverycheck', $dbconn->insert_id, time() + (1 * 365 * 24 * 60 * 60));
+					$id = $dbconn->insert_id;
 				}
 				if ( strlen( trim($postcode)) >= 2 )
 				{
-					header('Location: results');
+					header('Location: results-' . $id);
 				}
 			}
 			else
@@ -130,12 +129,18 @@
 		}
 	}
 	
+	$urlPostfix = '';
+	if ( $id != NULL )
+	{
+		$urlPostfix = '-' . $id;
+	}
+		
 	
 	// Create an array to represent the navbar buttons
 	$navBar = array (
-		'Your Information' => array ('Url' => 'your-information', 'Type' => 'Standard'),
-		'Results' => array ('Url' => 'results', 'Type' => 'Standard'),	
-		'About' => array ('Url' => 'about', 'Type' => 'Standard') );
+		'Your Information' => array ('Url' => 'your-information' . $urlPostfix, 'Type' => 'Standard'),
+		'Results' => array ('Url' => 'results' . $urlPostfix, 'Type' => 'Standard'),	
+		'About' => array ('Url' => 'about' . $urlPostfix, 'Type' => 'Standard') );
 	
 	function RenderNavBarButtons($navBar)
 	{
@@ -241,7 +246,7 @@
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
 	
 	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group" ">
-		<a href="about" class="navbar-brand">Shopping Delivery Check</a>
+		<a href="about<?=$urlPostfix?>" class="navbar-brand">Shopping Delivery Check</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
 			<span class="navbar-toggler-icon"></span>
 		</button>

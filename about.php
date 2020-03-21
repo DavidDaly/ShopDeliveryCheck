@@ -46,7 +46,7 @@
 									it is vital at this time that we use the delivery slots available to support them. This means that anyone who can shop in-store should do so.
 									By sharing informaion sbout yourself here, you will help us all to <b>do the right thing</b>.</p>
 					<p>
-						<a href='your-information' class="btn btn-primary"><b>Enter your details</b></a>
+						<a href='your-information<?=$urlPostfix?>' class="btn btn-primary"><b>Enter your details</b></a>
 					</p>
 					<hr />
 					<p>

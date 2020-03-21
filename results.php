@@ -37,8 +37,8 @@
 				
 				if ( !$showLocalStats )
 				{	
-					$advice = 	"So far we don't have enough information for your postcode area so we are only showing the information we have collected nationally. ".
-								"Please encourage other people in your area to share information so that we can provide better advice.";
+					$advice = 	"So far we don't have enough information for your postcode area so we are only showing national summary data. ".
+								"Please encourage other people in your area to use this site so that we can provide better local advice.";
 				}
 				else
 				{	
@@ -149,6 +149,7 @@
 		global $showLocalStats;
 		global $advice;
 		global $socialLinks;
+		global $siteURL;
 
 	?>
 	
@@ -161,7 +162,9 @@
 							<div class="col-lg-12">
 								<h3>Summary</h3>
 								<p><?=$advice?></p>
-								<p>Please return to this site to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we are reporting information that is current.</p>
+								<p>Please bookmark this page. This link is unique to you and you can use it to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we are reporting data that is current.</p>
+								<p>If you wish to start again to enter new information on behalf of someone else, please click <a href="your-information">here</a>.</p>
+								<hr />
 								<p><?=$socialLinks?></p>
 							</div>
 						</div>	

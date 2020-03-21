@@ -1,8 +1,12 @@
-# Copyright 2018 Atos SE and Worldline
+# Copyright 2020 David Daly
 # Licensed under MIT (https://github.com/atosorigin/DevOpsMaturityAssessment/blob/master/LICENSE)
 
 RewriteEngine On # Turn on the rewriting engine
-RewriteRule		^$						about.php [NC,L]
-RewriteRule		^about$					about.php 	[NC,L]
-RewriteRule		^your-information$		enterDetails.php 	[NC,L]
-RewriteRule		^results$				results.php 	[NC,L]
+RewriteRule		^$						about.php 				[NC,L]
+RewriteRule		^about$					about.php 				[NC,L]
+RewriteRule		^your-information$		enterDetails.php 		[NC,L]
+RewriteRule		^results$				results.php 			[NC,L]
+
+RewriteRule		^about-(.*)$				about.php?id=$1			[NC,L]
+RewriteRule		^your-information-(.*)$		enterDetails.php?id=$1 	[NC,L]
+RewriteRule		^results-(.*)$				results.php?id=$1 		[NC,L]

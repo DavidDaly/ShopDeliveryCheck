@@ -42,7 +42,7 @@
  
 	<div class="container-fluid">
 	
-	<form action="your-information" method="POST">
+	<form action="your-information<?=$urlPostfix?>" method="POST">
 
 	<div class="row">
 		<div class="col-xl-9 col-lg-11 m-2 pb-4 rounded text-center text-dark mx-auto">
@@ -51,7 +51,7 @@
 				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
 						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
 							By using this site you agree that the data you provide can be used in order to generate summary statistics. The data may also be shared with 3rd parties (such as supermarkets, the UK Government, or other relevant organisations) to assist with their planning.<br /><br />
-							Please complete the questions below and then click on Save.	In addition you agree to the use of cookies which ae used only to enable you to return and update the information you have provided.
+							Please complete the questions below and then click on Save.
 						</div>
 				</div>
 		
