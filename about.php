@@ -44,7 +44,7 @@
 					<p class="lead">With the huge impact of COVID-19 there are many people who cannot leave their home to do shopping. 
 									Whether this is because they are following <a href="https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance/stay-at-home-guidance-for-households-with-possible-coronavirus-covid-19-infection" target="_blank">UK Government advice</a> to help stop the spread of the virus, or for another reason, 
 									it is vital at this time that we use the delivery slots available to support them. This means that anyone who can shop in-store should do so.
-									By sharing information sbout yourself here, you will help us all to <b>do the right thing</b>.</p>
+									By sharing information about yourself here, you will help us all to <b>do the right thing</b>.</p>
 					<p>
 						<a href='your-information<?=$urlPostfix?>' class="btn btn-primary"><b>Enter your details</b></a>
 					</p>
