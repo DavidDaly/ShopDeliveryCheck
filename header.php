@@ -31,9 +31,37 @@
 	
 	// Start by checking that postcode has been entered
 	$postcode = '';
+	$postcodeTown = 'Hello';
+	$postcodeValid = FALSE;
 	if ( isset($_POST['POSTCODE']) )
 	{
-		$postcode = trim($_POST['POSTCODE']);
+		// check that postcode is valid
+		$postcode = strtoupper(trim($_POST['POSTCODE']));
+		if ( strlen($postcode) > 2 )
+		{
+			$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
+			// Check connection
+			if (!$dbconn->connect_error)
+			{
+				$sql = "SELECT * FROM postcodes WHERE Postcode = '$postcode'";
+				if ( $result = $dbconn->query($sql) );
+				{
+					if ( $result->num_rows > 0 )
+					{
+						$postcodeValid = TRUE;
+						$row = $result->fetch_assoc();
+						$postcodeTown = $row['Town'];
+					}
+				}
+			}
+		}
+		
+		if ( !$postcodeValid )
+		{
+			// Set back to what the user entered
+			$postcode = $_POST['POSTCODE'];
+		}
+		
 	}
 	
 	// Also check what was selected for delivery availability
@@ -72,11 +100,11 @@
 		{
 			if ( $id != NULL )
 			{
-				$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable=$deliveryAvailable, NeedGroup='$needGroup' WHERE ID=$id";
+				$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable=$deliveryAvailable, NeedGroup='$needGroup', PostcodeTown='$postcodeTown' WHERE ID=$id";
 			}
 			else
 			{
-				$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup) VALUES ('$postcode', $deliveryAvailable, '$needGroup')";
+				$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup, PostcodeTown) VALUES ('$postcode', $deliveryAvailable, '$needGroup', '$postcodeTown')";
 			}
 			
 			if ( $dbconn->query($sql) === TRUE )
@@ -86,7 +114,8 @@
 				{
 					$id = $dbconn->insert_id;
 				}
-				if ( strlen( trim($postcode)) >= 2 )
+				// if postcode was valid redirect to results
+				if ( $postcodeValid )
 				{
 					header('Location: results-' . $id);
 				}
@@ -118,11 +147,12 @@
 				$result = $dbconn->query($sql);
 				if ( $result->num_rows > 0 )
 				{
-					while ( $row = $result->fetch_assoc())
+					while ( $row = $result->fetch_assoc() )
 					{
 						$postcode = trim($row['Postcode']);
 						$deliveryAvailable = $row['DeliveryAvailable'];
 						$needGroup = $row['NeedGroup'];
+						$postcodeTown =  $row['PostcodeTown'];
 					}
 				}
 				else

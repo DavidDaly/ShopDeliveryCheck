@@ -23,15 +23,15 @@
 		// Check connection
 		if (!$dbconn->connect_error)
 		{
-			$sql = 	"SELECT COUNT(Postcode), NeedGroup FROM information " .
-					"WHERE DeliveryAvailable='false' AND Postcode='$postcode' " .
+			$sql = 	"SELECT COUNT(PostcodeTown), NeedGroup FROM information " .
+					"WHERE DeliveryAvailable='false' AND PostcodeTown='$postcodeTown' " .
 					"GROUP BY NeedGroup";
 			$result = $dbconn->query($sql);
 
 			while ( $row = $result->fetch_assoc() )
 			{
-				$localStats[$row['NeedGroup']] = $row['COUNT(Postcode)'];
-				$localTotal += $row['COUNT(Postcode)'];			
+				$localStats[$row['NeedGroup']] = $row['COUNT(PostcodeTown)'];
+				$localTotal += $row['COUNT(PostcodeTown)'];			
 			}
 			
 			$showLocalStats = ( $localTotal >= 10 );		
@@ -138,6 +138,7 @@
 	function renderSummary()
 	{
 		global $postcode;
+		global $postcodeTown;
 		global $localStats;
 		global $nationalStats;
 		global $showLocalStats;
@@ -210,7 +211,7 @@
 				title:
 					{
 						display: true,
-						text: 'People reporting no delivery slots available in <?=$postcode?>',
+						text: 'People with no delivery slots available in the <?=$postcodeTown?> area',
 						fontSize: 16,
 						fontColor: "black"
 					},

@@ -8,13 +8,13 @@
 	
 	// Setup variables for rendering
 	
-	// Start by checking that postcode has been entered
+	// Start by checking that a valid postcode has been entered
 	$postcodeError = '';
-	if  ( isset($_POST['AVAIL']) )
+	if  ( isset($_POST['POSTCODE']) )
 	{
-		if ( strlen( trim($postcode)) < 2 )
+		if ( !$postcodeValid )
 		{
-			$postcodeError = '<font color="red">Please enter the first half of your postcode</font>';
+			$postcodeError = '<font color="red">Please enter a valid postcode (first half only)</font>';
 		}
 	}
 	

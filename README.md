@@ -9,7 +9,8 @@ The aim of this project is to create a simple tool that will make it possible fo
 This is a PHP application that should run on any server that supports PHP 5.5 or higher with Mod_Rewrite enabled. You will need to connect to a MySQL database:
 * Copy db.example.php to db.php
 * Update the configuration in db.php
-* Import db.sql into your database to create the necessary table
+* Import db.sql into your database to create the information table
+* Run the loadpostcodes.php script to create the postcodes table
 
 ## How to Contribute
 
