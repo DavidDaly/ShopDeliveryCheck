@@ -38,8 +38,17 @@
 			
 			if ( !$showLocalStats )
 			{	
-				$advice = 	"So far we don't have enough information for your postcode area so we are only showing national summary data. ".
-							"Please encourage other people in your area to use this site so that we can provide better local advice.";
+				$localTotalPeople = '';
+				if ( $localTotal == 1 )
+				{
+					$localTotalPeople = 'you are the only one to have';
+				}
+				else
+				{
+					$localTotalPeople = "only $localTotal people have";
+				}
+				$advice = 	"So far $localTotalPeople told us what's happening in the $postcodeTown area. So for now we can only show you the information we've collected for the whole country. " .
+							"Please encourage other people in the $postcodeTown area to use this site so that we can provide better local advice.";
 			}
 			else
 			{	
