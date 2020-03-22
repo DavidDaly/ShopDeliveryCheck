@@ -19,25 +19,76 @@
 	}
 	
 	// Delivery availability
-	$availYesChecked = 'checked="true"';
+	$availYesChecked = '';
 	$availNoChecked = '';
-	if ( $deliveryAvailable == 'FALSE')
+	$deliveryAvailableError = '';	
+	if ( !is_null($deliveryAvailable) )
 	{
-		$availYesChecked = '';
-		$availNoChecked = 'checked="true"';
-	}
-	
-	// What "need group" thy are in
-	$needGroupChecked = array('', '', '', '');
-	for ( $i=0; $i<4; $i++ )
-	{
-		if ( strval($needGroup)-1 == $i )
+		if ( $deliveryAvailable == 'FALSE')
 		{
-			$needGroupChecked[$i] = 'checked="true"';
-			$needGroup = $i+1;
+			$availYesChecked = '';
+			$availNoChecked = 'checked="true"';
+		}
+		else
+		{
+			$availYesChecked = 'checked="true"';
+			$availNoChecked = '';
 		}
 	}
-
+	else
+	{
+		if ( isset($_POST['POSTCODE']) )
+		{
+			$deliveryAvailableError = '<font color="red">Please tell us if deliveries are available in your area</font>';
+		}
+	}
+	
+	// Commit to stopping non essential delivery
+	$nonEssentialCommitYesChecked = '';
+	$nonEssentialCommitNoChecked = '';
+	$nonEssentialCommitError = '';	
+	if ( !is_null($nonEssentialCommit) )
+	{
+		if ( $nonEssentialCommit == 'FALSE')
+		{
+			$nonEssentialCommitYesChecked = '';
+			$nonEssentialCommitNoChecked = 'checked="true"';
+		}
+		else
+		{
+			$nonEssentialCommitYesChecked = 'checked="true"';
+			$nonEssentialCommitNoChecked = '';
+		}
+	}
+	else
+	{
+		if ( isset($_POST['POSTCODE']) )
+		{
+			$nonEssentialCommitError = '<font color="red">Please tell us if you will commit to not using home delivery services unless it is essential for you to do so</font>';
+		}
+	}
+	
+	// What "need group" they are in
+	$needGroupChecked = array('', '', '', '');
+	$needGroupError = '';
+	if ( !is_null($needGroup) )
+	{
+		for ( $i=0; $i<4; $i++ )
+		{
+			if ( strval($needGroup)-1 == $i )
+			{
+				$needGroupChecked[$i] = 'checked="true"';
+				$needGroup = $i+1;
+			}
+		}
+	}
+	else
+	{
+		if  ( isset($_POST['POSTCODE']) )
+		{
+			$needGroupError = '<font color="red">Please tell us how reliant you are on home deliveries</font>';
+		}
+	}
 	
 ?> 
  
@@ -57,22 +108,9 @@
 				</div>
 		
 				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
-					<h6 class="card-header">Are supermarket home delivery slots available over the next 7 days in your area?</h6>
-						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
-							<div class="custom-control custom-radio my-2">
-								<input type="radio" class="custom-control-input" id="AVAIL-YES" value="AVAIL-YES" name="AVAIL" <?=$availYesChecked?>>
-								<label class="custom-control-label" for="AVAIL-YES">Yes</label>
-							</div>
-							<div class="custom-control custom-radio my-2">
-								<input type="radio" class="custom-control-input" id="AVAIL-NO" value="AVAIL-NO" name="AVAIL" <?=$availNoChecked?>>
-								<label class="custom-control-label" for="AVAIL-NO">No</label>
-							</div>
-						</div>
-				</div>
-		
-				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
 					<h6 class="card-header">Which statement best describes how reliant you are on shopping deliveries at this time:</h6>
 						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
+							<?=$needGroupError?>
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="NEED-GROUP-1" value="NEED-GROUP-1" name="NEED-GROUP" <?=$needGroupChecked[0]?>>
 								<label class="custom-control-label" for="NEED-GROUP-1"><b>Totally reliant:</b> I need to have my shopping delivered. I cannot leave the house (due to self-isolating as per <a href="https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance/stay-at-home-guidance-for-households-with-possible-coronavirus-covid-19-infection" target="_blank">UK Government advice</a>, or for other reasons). I have no one who can shop on my behalf.
@@ -92,6 +130,36 @@
 								<input type="radio" class="custom-control-input" id="NEED-GROUP-4" value="NEED-GROUP-4" name="NEED-GROUP" <?=$needGroupChecked[3]?>>
 								<label class="custom-control-label" for="NEED-GROUP-4"><b>Delivery not needed:</b> It is no problem for me to do my shopping in store.
 								</label>
+							</div>
+						</div>
+				</div>
+		
+				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
+					<h6 class="card-header">Are supermarket home delivery slots available over the next 7 days in your area?</h6>
+						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
+							<?=$deliveryAvailableError?>
+							<div class="custom-control custom-radio my-2">
+								<input type="radio" class="custom-control-input" id="AVAIL-YES" value="AVAIL-YES" name="AVAIL" <?=$availYesChecked?>>
+								<label class="custom-control-label" for="AVAIL-YES">Yes</label>
+							</div>
+							<div class="custom-control custom-radio my-2">
+								<input type="radio" class="custom-control-input" id="AVAIL-NO" value="AVAIL-NO" name="AVAIL" <?=$availNoChecked?>>
+								<label class="custom-control-label" for="AVAIL-NO">No</label>
+							</div>
+						</div>
+				</div>
+		
+				<div class="card mt-4  ml-sm-2 ml-xs-0 mr-sm-2 mr-xs-0 text-dark text-left bg-light border-primary border">
+					<h6 class="card-header">Will you commit to not using home delivery services unless it is essential for you to do so?</h6>
+						<div class="card-body pt-1 pb-1 bg-gradient-secondary">
+							<?=$nonEssentialCommitError?>
+							<div class="custom-control custom-radio my-2">
+								<input type="radio" class="custom-control-input" id="NON-ESSENTIAL-COMMIT-YES" value="NON-ESSENTIAL-COMMIT-YES" name="NON-ESSENTIAL-COMMIT" <?=$nonEssentialCommitYesChecked?>>
+								<label class="custom-control-label" for="NON-ESSENTIAL-COMMIT-YES">Yes</label>
+							</div>
+							<div class="custom-control custom-radio my-2">
+								<input type="radio" class="custom-control-input" id="NON-ESSENTIAL-COMMIT-NO" value="NON-ESSENTIAL-COMMIT-NO" name="NON-ESSENTIAL-COMMIT" <?=$nonEssentialCommitNoChecked?>>
+								<label class="custom-control-label" for="NON-ESSENTIAL-COMMIT-NO">No</label>
 							</div>
 						</div>
 				</div>

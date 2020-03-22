@@ -31,7 +31,7 @@
 	
 	// Start by checking that postcode has been entered
 	$postcode = '';
-	$postcodeTown = 'Hello';
+	$postcodeTown = '';
 	$postcodeValid = FALSE;
 	if ( isset($_POST['POSTCODE']) )
 	{
@@ -65,13 +65,33 @@
 	}
 	
 	// Also check what was selected for delivery availability
-	$deliveryAvailable = 'TRUE';
+	$deliveryAvailable = NULL;
 	if ( isset($_POST['AVAIL']) )
 	{
 		if ( $_POST['AVAIL'] == 'AVAIL-NO' )
 		{
 			$deliveryAvailable = 'FALSE';
 		}
+		else
+		{
+			$deliveryAvailable = 'TRUE';
+		}
+		
+	}
+	
+	// Also check what was selected for commiting not to use non-essential home delivery
+	$nonEssentialCommit = NULL;
+	if ( isset($_POST['NON-ESSENTIAL-COMMIT']) )
+	{
+		if ( $_POST['NON-ESSENTIAL-COMMIT'] == 'NON-ESSENTIAL-COMMIT-NO' )
+		{
+			$nonEssentialCommit = 'FALSE';
+		}
+		else
+		{
+			$nonEssentialCommit = 'TRUE';
+		}
+		
 	}
 	
 	// And finally what "need group" thy are in
@@ -88,50 +108,47 @@
 	else
 	{
 		// Defualt value
-		$needGroup = 4;
+		$needGroup = NULL;
 	}
 	
 	// If person has clicked save (i.e. we have post data), save it to the database and then navigate to Summary for Area
 	if ( isset($_POST['POSTCODE']) )
 	{	
-		$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
-		// Check connection
-		if (!$dbconn->connect_error)
+		if ( $postcodeValid && !is_null($deliveryAvailable) && !is_null($needGroup) && !is_null($nonEssentialCommit) )
 		{
-			if ( $id != NULL )
+			$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
+			// Check connection
+			if (!$dbconn->connect_error)
 			{
-				$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable=$deliveryAvailable, NeedGroup='$needGroup', PostcodeTown='$postcodeTown' WHERE ID=$id";
-			}
-			else
-			{
-				$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup, PostcodeTown) VALUES ('$postcode', $deliveryAvailable, '$needGroup', '$postcodeTown')";
-			}
-			
-			if ( $dbconn->query($sql) === TRUE )
-			{
-				// If it was an insert, save the insert ID
-				if ( $id == NULL )
+				if ( $id != NULL )
 				{
-					$id = $dbconn->insert_id;
+					$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable=$deliveryAvailable, NeedGroup='$needGroup', PostcodeTown='$postcodeTown', CommitStopNonEssential=$nonEssentialCommit WHERE ID=$id";
 				}
-				// if postcode was valid redirect to results
-				if ( $postcodeValid )
+				else
 				{
+					$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup, PostcodeTown, CommitStopNonEssential) VALUES ('$postcode', $deliveryAvailable, '$needGroup', '$postcodeTown', $nonEssentialCommit)";
+				}
+			
+				if ( $dbconn->query($sql) === TRUE )
+				{
+					// If it was an insert, save the insert ID
+					if ( $id == NULL )
+					{
+						$id = $dbconn->insert_id;
+					}
 					header('Location: results-' . $id);
 				}
+				else
+				{
+					echo $dbconn->error;
+				}
+		
+				$dbconn->close();
 			}
 			else
 			{
 				echo $dbconn->error;
 			}
-		
-			$dbconn->close();
-		
-		}
-		else
-		{
-			echo $dbconn->error;
-			
 		}
 	}
 	else
@@ -150,9 +167,24 @@
 					while ( $row = $result->fetch_assoc() )
 					{
 						$postcode = trim($row['Postcode']);
-						$deliveryAvailable = $row['DeliveryAvailable'];
+						if ( $row['DeliveryAvailable'] == 0 )
+						{
+							$deliveryAvailable = 'FALSE';
+						}
+						else
+						{
+							$deliveryAvailable = 'TRUE';
+						}
 						$needGroup = $row['NeedGroup'];
 						$postcodeTown =  $row['PostcodeTown'];
+						if ( $row['CommitStopNonEssential'] == 0 )
+						{
+							$nonEssentialCommit = 'FALSE';
+						}
+						else
+						{
+							$nonEssentialCommit = 'TRUE';
+						}
 					}
 				}
 				else
