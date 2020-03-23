@@ -165,7 +165,7 @@
 				<div class="bg-light rounded-top mt-4 p-2 p-sm-4 border-primary border ml-sm-2 ml-xs-2 mb-0 mr-sm-2 mr-xs-2">
 						<div class="row">
 							<div class="col-lg-12">
-								<h3>Summary</h3>
+								<h3>Delivery Demand in <?=$postcodeTown?></h3>
 								<p><?=$advice?></p>
 								<p>Please bookmark this page. This link is unique to you and you can use it to update your information if your situation changes. Information that is not updated for more than 7 days will be removed to ensure that we are reporting data that is current.</p>
 								<p>If you wish to start again to enter new information on behalf of someone else, please click <a href="your-information">here</a>.</p>

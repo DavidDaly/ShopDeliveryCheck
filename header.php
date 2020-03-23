@@ -37,7 +37,7 @@
 	{
 		// check that postcode is valid
 		$postcode = strtoupper(trim($_POST['POSTCODE']));
-		if ( strlen($postcode) > 2 )
+		if ( strlen($postcode) >= 2 )
 		{
 			$dbconn = new mysqli($dbserver, $dbuser, $dbpassword, $dbname);
 			// Check connection
