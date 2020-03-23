@@ -13,7 +13,7 @@
 					'	<div class="fb-share-button" data-href="' . $siteURL . '" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fshopdeliverycheck.co.uk%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>' .
 					'		<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>' .
 					'		<script type="IN/Share" data-url="' . $siteURL . '"></script>' .
-					'		<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Please take a moment to submit information about the availability of home shopping deliveries in your area" data-url="' . $siteURL . '" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>' .						
+					'		<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Please make a commitment that you will only use home deliveries when it is essential" data-url="' . $siteURL . '" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>' .						
 					'	</div>';
 	
 	require 'db.php';
@@ -205,8 +205,8 @@
 	
 	// Create an array to represent the navbar buttons
 	$navBar = array (
-		'Your Information' => array ('Url' => 'your-information' . $urlPostfix, 'Type' => 'Standard'),
-		'Results' => array ('Url' => 'results' . $urlPostfix, 'Type' => 'Standard'),	
+		'Your viewpoint' => array ('Url' => 'your-information' . $urlPostfix, 'Type' => 'Standard'),
+		'Info for your area' => array ('Url' => 'results' . $urlPostfix, 'Type' => 'Standard'),	
 		'About' => array ('Url' => 'about' . $urlPostfix, 'Type' => 'Standard') );
 	
 	function RenderNavBarButtons($navBar)
@@ -285,7 +285,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="fontawesome/css/all.css" rel="stylesheet">
 
-		<title>Shopping Delivery Check</title>
+		<title>Home Delivery Demand</title>
 		<script src="./js/chart.bundle.min.js"></script>
 		<script src="js/jquery-3.3.1.min.js"></script>		
 		<style>
@@ -313,7 +313,7 @@
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
 	
 	<nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-md form-group" ">
-		<a href="about<?=$urlPostfix?>" class="navbar-brand">Shopping Delivery Check</a>
+		<a href="about<?=$urlPostfix?>" class="navbar-brand">Home Delivery Demand</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
 			<span class="navbar-toggler-icon"></span>
 		</button>

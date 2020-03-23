@@ -2,7 +2,7 @@
 	/* Copyright 2020 David Daly
 	 * Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE) */	
 	
-	$activePage = 'Results';
+	$activePage = 'Info for your area';
 
 	require 'header.php';
 
@@ -24,7 +24,7 @@
 		if (!$dbconn->connect_error)
 		{
 			$sql = 	"SELECT COUNT(PostcodeTown), NeedGroup FROM information " .
-					"WHERE DeliveryAvailable='false' AND PostcodeTown='$postcodeTown' " .
+					"WHERE DeliveryAvailable=false AND PostcodeTown='$postcodeTown' " .
 					"GROUP BY NeedGroup";
 			$result = $dbconn->query($sql);
 
@@ -101,7 +101,7 @@
 		
 			
 			$sql = 	"SELECT COUNT(Postcode), NeedGroup FROM information " .
-					"WHERE DeliveryAvailable='false' " .
+					"WHERE DeliveryAvailable=false " .
 					"GROUP BY NeedGroup";
 			$result = $dbconn->query($sql);
 			if ( $result->num_rows > 0 )
@@ -130,16 +130,17 @@
 
 			<section class="jumbotron text-center text-dark border-primary border">
 				<div class="container">
-					<h1 class="jumbotron-heading">Please enter your details first</h1>
-					<p class="lead">Please enter your details so that we can show you summary information about the number and profile of people relying on shopping deliveries in your area.</p>
+					<h1 class="jumbotron-heading">Please tell us what's happenning in your area first</h1>
+					<p class="lead">Please tell us your viewpoint about what's happening in your area so we can show you summary information about the number and profile of people relying on shopping deliveries in your location.</p>
 					<p>
-						<a href='your-information' class="btn btn-primary">Enter your details</a>
+						<a href='your-information' class="btn btn-primary">Tell us what's happening</a>
 					</p>
 				</div>
 			</section>
 		
 	
-		</div><!-- /.container -->
+		</div>
+		</div>
 		
 		<?php
 	}

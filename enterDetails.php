@@ -3,7 +3,7 @@
 	 * Licensed under MIT (https://github.com/DavidDaly/ShopDeliveryCheck/blob/master/LICENSE) */
 	
 	$isForm = TRUE;
-	$activePage = 'Your Information';
+	$activePage = 'Your viewpoint';
 	require 'header.php';
 	
 	// Setup variables for rendering
