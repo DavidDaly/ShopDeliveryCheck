@@ -113,12 +113,12 @@
 							<?=$needGroupError?>
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="NEED-GROUP-1" value="NEED-GROUP-1" name="NEED-GROUP" <?=$needGroupChecked[0]?>>
-								<label class="custom-control-label" for="NEED-GROUP-1"><b>Totally reliant:</b> I need to have my shopping delivered. I cannot leave the house (due to self-isolating as per <a href="https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance/stay-at-home-guidance-for-households-with-possible-coronavirus-covid-19-infection" target="_blank">UK Government advice</a>, or for other reasons). I have no one who can shop on my behalf.
+								<label class="custom-control-label" for="NEED-GROUP-1"><b>Totally reliant:</b> I need to have my shopping delivered. I can't leave the house (due to self-isolation or another reason). I have no one who can shop on my behalf.
 								</label>
 							</div>
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="NEED-GROUP-2" value="NEED-GROUP-2" name="NEED-GROUP" <?=$needGroupChecked[1]?>>
-								<label class="custom-control-label" for="NEED-GROUP-2"><b>Highly reliant:</b> I strongly prefer to have my shopping delivered. I cannot leave the house (due to self-isolating as per <a href="https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance/stay-at-home-guidance-for-households-with-possible-coronavirus-covid-19-infection" target="_blank">UK Government advice</a>, or for other reasons) but I have someone who can shop on my behalf.
+								<label class="custom-control-label" for="NEED-GROUP-2"><b>Highly reliant:</b> I strongly prefer to have my shopping delivered. I cannot leave the house (due to self-isolation or another reason) but I have someone who can shop on my behalf.
 								</label>
 							</div>
 							<div class="custom-control custom-radio my-2">
