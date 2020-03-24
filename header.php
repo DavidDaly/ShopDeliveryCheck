@@ -70,11 +70,15 @@
 	{
 		if ( $_POST['AVAIL'] == 'AVAIL-NO' )
 		{
-			$deliveryAvailable = 'FALSE';
+			$deliveryAvailable = '0';
+		}
+		elseif ( $_POST['AVAIL'] == 'AVAIL-YES' )
+		{
+			$deliveryAvailable = '1';
 		}
 		else
 		{
-			$deliveryAvailable = 'TRUE';
+			$deliveryAvailable = '2'; // Don't know	
 		}
 		
 	}
@@ -122,11 +126,11 @@
 			{
 				if ( $id != NULL )
 				{
-					$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable=$deliveryAvailable, NeedGroup='$needGroup', PostcodeTown='$postcodeTown', CommitStopNonEssential=$nonEssentialCommit WHERE ID=$id";
+					$sql = "UPDATE information SET Postcode='$postcode', DeliveryAvailable='$deliveryAvailable', NeedGroup='$needGroup', PostcodeTown='$postcodeTown', CommitStopNonEssential=$nonEssentialCommit WHERE ID=$id";
 				}
 				else
 				{
-					$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup, PostcodeTown, CommitStopNonEssential) VALUES ('$postcode', $deliveryAvailable, '$needGroup', '$postcodeTown', $nonEssentialCommit)";
+					$sql = "INSERT INTO information (Postcode, DeliveryAvailable, NeedGroup, PostcodeTown, CommitStopNonEssential) VALUES ('$postcode', '$deliveryAvailable', '$needGroup', '$postcodeTown', $nonEssentialCommit)";
 				}
 			
 				if ( $dbconn->query($sql) === TRUE )
@@ -167,14 +171,7 @@
 					while ( $row = $result->fetch_assoc() )
 					{
 						$postcode = trim($row['Postcode']);
-						if ( $row['DeliveryAvailable'] == 0 )
-						{
-							$deliveryAvailable = 'FALSE';
-						}
-						else
-						{
-							$deliveryAvailable = 'TRUE';
-						}
+						$deliveryAvailable = $row['DeliveryAvailable'];
 						$needGroup = $row['NeedGroup'];
 						$postcodeTown =  $row['PostcodeTown'];
 						if ( $row['CommitStopNonEssential'] == 0 )

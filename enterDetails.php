@@ -21,18 +21,21 @@
 	// Delivery availability
 	$availYesChecked = '';
 	$availNoChecked = '';
+	$availDontKnowChecked = '';
 	$deliveryAvailableError = '';	
 	if ( !is_null($deliveryAvailable) )
 	{
-		if ( $deliveryAvailable == 'FALSE')
+		if ( $deliveryAvailable == '0')
 		{
-			$availYesChecked = '';
 			$availNoChecked = 'checked="true"';
+		}
+		elseif ( $deliveryAvailable == '1')
+		{
+			$availYesChecked = 'checked="true"';
 		}
 		else
 		{
-			$availYesChecked = 'checked="true"';
-			$availNoChecked = '';
+			$availDontKnowChecked = 'checked="true"';
 		}
 	}
 	else
@@ -145,6 +148,10 @@
 							<div class="custom-control custom-radio my-2">
 								<input type="radio" class="custom-control-input" id="AVAIL-NO" value="AVAIL-NO" name="AVAIL" <?=$availNoChecked?>>
 								<label class="custom-control-label" for="AVAIL-NO">No</label>
+							</div>
+							<div class="custom-control custom-radio my-2">
+								<input type="radio" class="custom-control-input" id="AVAIL-DONT-KNOW" value="AVAIL-DONT-KNOW" name="AVAIL" <?=$availDontKnowChecked?>>
+								<label class="custom-control-label" for="AVAIL-DONT-KNOW">Don't know</label>
 							</div>
 						</div>
 				</div>

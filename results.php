@@ -24,7 +24,7 @@
 		if (!$dbconn->connect_error)
 		{
 			$sql = 	"SELECT COUNT(PostcodeTown), NeedGroup FROM information " .
-					"WHERE DeliveryAvailable=false AND PostcodeTown='$postcodeTown' " .
+					"WHERE DeliveryAvailable=0 AND PostcodeTown='$postcodeTown' " .
 					"GROUP BY NeedGroup";
 			$result = $dbconn->query($sql);
 
